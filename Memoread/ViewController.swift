@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
 
     
@@ -26,25 +26,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func submitToCloud(sender: AnyObject) {
-        
         cloudKitHandler.doesUserHavePet(complete)
+
     }
     
     func complete(userHasPet: Bool) {
         let vc : AnyObject!
         
-        if userHasPet {
+        println(userHasPet)
+        
+        if userHasPet{
             vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
         }
         else {
             vc = self.storyboard!.instantiateViewControllerWithIdentifier("noPetView")
         }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+                    self.showViewController(vc as! UIViewController, sender: vc)
+        })
     }
 
-    
-    
-
-        
 
     @IBAction func getLatestText(sender: AnyObject) {
     }

@@ -59,11 +59,15 @@ class CloudKitHandler {
         return
     }
     
+    func getUserID () {
+        
+    }
     
-    func saveText(userName : String) {
-        let textRecord = CKRecord(recordType: "Users")
-        textRecord.setValue(userName, forKey: "userID")
-        textRecord.setValue(1, forKey: "HasLoggedIn")
+    
+    func saveText() {
+        let textRecord = CKRecord(recordType: "DataStore")
+        textRecord.setValue(1, forKey: "HasPet")
+        textRecord.setValue("_b6957aeb96fbcf69fd3b80638e113f26", forKey: "UserID")
         publicDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
             NSLog("Saved to cloud kit")
         })

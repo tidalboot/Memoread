@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0D0D8E1AA662DE0094F710 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D0D8D1AA662DE0094F710 /* PetViewController.swift */; };
+		FC0D0D901AA6632A0094F710 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */; };
+		FC0D0D921AA667240094F710 /* NoPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D0D911AA667240094F710 /* NoPetViewController.swift */; };
 		FC36AE771AA5B8A2004F91F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */; };
 		FC36AE791AA5B8A2004F91F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE781AA5B8A2004F91F1 /* ViewController.swift */; };
 		FC36AE7C1AA5B8A2004F91F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC36AE7A1AA5B8A2004F91F1 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC0D0D8D1AA662DE0094F710 /* PetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
+		FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		FC0D0D911AA667240094F710 /* NoPetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPetViewController.swift; sourceTree = "<group>"; };
 		FC36AE711AA5B8A2004F91F1 /* Memoread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memoread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC36AE751AA5B8A2004F91F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +93,9 @@
 				FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */,
 				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
 				FC36AE781AA5B8A2004F91F1 /* ViewController.swift */,
+				FC0D0D911AA667240094F710 /* NoPetViewController.swift */,
+				FC0D0D8D1AA662DE0094F710 /* PetViewController.swift */,
+				FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */,
 				FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */,
 				FC36AE7A1AA5B8A2004F91F1 /* Main.storyboard */,
 				FC36AE7D1AA5B8A2004F91F1 /* Images.xcassets */,
@@ -228,7 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */,
+				FC0D0D921AA667240094F710 /* NoPetViewController.swift in Sources */,
 				FC36AE791AA5B8A2004F91F1 /* ViewController.swift in Sources */,
+				FC0D0D8E1AA662DE0094F710 /* PetViewController.swift in Sources */,
+				FC0D0D901AA6632A0094F710 /* NavigationViewController.swift in Sources */,
 				FC36AE771AA5B8A2004F91F1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +445,7 @@
 				FC36AE921AA5B8A2004F91F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC36AE931AA5B8A2004F91F1 /* Build configuration list for PBXNativeTarget "MemoreadTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +454,7 @@
 				FC36AE951AA5B8A2004F91F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
