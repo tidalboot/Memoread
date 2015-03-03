@@ -22,7 +22,7 @@ class CloudKitHandler {
     }
     
     
-    func doesUserHavePet () -> Bool {
+    func doesUserHavePet (callback: (userHasPet: Bool) -> ()) {
         
         var userHasPet = false
         
@@ -50,12 +50,13 @@ class CloudKitHandler {
                         else {
                             userHasPet = true
                         }
+                        return callback(userHasPet: userHasPet)
                     }
                     println("After fetching data userHasPet boolean is \(userHasPet)")
                 })
             }
         })
-        return userHasPet
+        return
     }
     
     

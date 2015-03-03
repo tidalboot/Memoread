@@ -26,30 +26,24 @@ class ViewController: UIViewController {
     }
 
     @IBAction func submitToCloud(sender: AnyObject) {
-                
-        var doesUserHavePet = false
-
-        var serialQueue: dispatch_queue_t = dispatch_queue_create("com.blah.queue", DISPATCH_QUEUE_SERIAL);
-            dispatch_async(serialQueue, {
-                doesUserHavePet = self.cloudKitHandler.doesUserHavePet()
-                });
         
-        dispatch_async(serialQueue, {
-                println("fuck you")
-                println(doesUserHavePet)
-        });
+        cloudKitHandler.doesUserHavePet(complete)
+    }
+    
+    func complete(userHasPet: Bool) {
+        let vc : AnyObject!
+        
+        if userHasPet {
+            vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
+        }
+        else {
+            vc = self.storyboard!.instantiateViewControllerWithIdentifier("noPetView")
+        }
     }
 
     
     
-//        let vc : AnyObject!
-//        
-//        if doesUserHavePet {
-//            vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
-//        }
-//        else {
-//            vc = self.storyboard!.instantiateViewControllerWithIdentifier("noPetView")
-//        }
+
         
 
     @IBAction func getLatestText(sender: AnyObject) {
