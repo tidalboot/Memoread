@@ -13,6 +13,8 @@
 		FC36AE7E1AA5B8A2004F91F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC36AE7D1AA5B8A2004F91F1 /* Images.xcassets */; };
 		FC36AE811AA5B8A2004F91F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC36AE7F1AA5B8A2004F91F1 /* LaunchScreen.xib */; };
 		FC36AE8D1AA5B8A2004F91F1 /* MemoreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE8C1AA5B8A2004F91F1 /* MemoreadTests.swift */; };
+		FC36AE981AA5BA72004F91F1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC36AE971AA5BA72004F91F1 /* CloudKit.framework */; };
+		FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,9 @@
 		FC36AE861AA5B8A2004F91F1 /* MemoreadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoreadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC36AE8B1AA5B8A2004F91F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC36AE8C1AA5B8A2004F91F1 /* MemoreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoreadTests.swift; sourceTree = "<group>"; };
+		FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Memoread.entitlements; sourceTree = "<group>"; };
+		FC36AE971AA5BA72004F91F1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC36AE981AA5BA72004F91F1 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +65,7 @@
 		FC36AE681AA5B8A2004F91F1 = {
 			isa = PBXGroup;
 			children = (
+				FC36AE971AA5BA72004F91F1 /* CloudKit.framework */,
 				FC36AE731AA5B8A2004F91F1 /* Memoread */,
 				FC36AE891AA5B8A2004F91F1 /* MemoreadTests */,
 				FC36AE721AA5B8A2004F91F1 /* Products */,
@@ -77,8 +84,10 @@
 		FC36AE731AA5B8A2004F91F1 /* Memoread */ = {
 			isa = PBXGroup;
 			children = (
+				FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */,
 				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
 				FC36AE781AA5B8A2004F91F1 /* ViewController.swift */,
+				FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */,
 				FC36AE7A1AA5B8A2004F91F1 /* Main.storyboard */,
 				FC36AE7D1AA5B8A2004F91F1 /* Images.xcassets */,
 				FC36AE7F1AA5B8A2004F91F1 /* LaunchScreen.xib */,
@@ -161,6 +170,12 @@
 				TargetAttributes = {
 					FC36AE701AA5B8A2004F91F1 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = Q5LYGJE7L5;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					FC36AE851AA5B8A2004F91F1 = {
 						CreatedOnToolsVersion = 6.3;
@@ -212,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */,
 				FC36AE791AA5B8A2004F91F1 /* ViewController.swift in Sources */,
 				FC36AE771AA5B8A2004F91F1 /* AppDelegate.swift in Sources */,
 			);
@@ -340,9 +356,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Memoread/Memoread.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Memoread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -350,9 +370,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Memoread/Memoread.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Memoread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
