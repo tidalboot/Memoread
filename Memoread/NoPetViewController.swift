@@ -24,11 +24,14 @@ class NoPetViewController: UIViewController {
 
     
     @IBAction func petClicked(sender: AnyObject) {
-        cloudKitHandler.saveText()
+        cloudKitHandler.getUserID(saveTextAndShowPetView)
+    }
+    
+    func saveTextAndShowPetView (userID: String) {
+        cloudKitHandler.saveTextWhenUserIDHasBeenFetched(userID)
         let vc : AnyObject!
         vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
         self.showViewController(vc as! UIViewController, sender: vc)
-
     }
 
 }

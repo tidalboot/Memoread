@@ -59,22 +59,36 @@ class CloudKitHandler {
         return
     }
     
-    func getUserID () {
-        
+    func getUserID (callback: (userID: String) -> ()) {
+        var userID : String!
+        container.fetchUserRecordIDWithCompletionHandler { (recordID, errorMessage
+            ) -> Void in
+            userID = recordID.recordName
+            return callback(userID: userID)
+        }
+        return
     }
     
-    
-    func saveText() {
+    func saveTextWhenUserIDHasBeenFetched(userID: String) {
         let textRecord = CKRecord(recordType: "DataStore")
-        var lol = textRecord.recordID
         textRecord.setValue(1, forKey: "HasPet")
-        textRecord.setValue("_b6957aeb96fbcf69fd3b80638e113f26", forKey: "UserID")
+        textRecord.setValue(userID, forKey: "UserID")
         privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
             NSLog("Saved to cloud kit")
         })
-        var lolol = CKRecord(recordType: "DataStore", recordID: lol)
-        var trolol = lolol.creatorUserRecordID
     }
+//    
+//    func saveText() {
+//        let textRecord = CKRecord(recordType: "DataStore")
+//        var lol = textRecord.recordID
+//        textRecord.setValue(1, forKey: "HasPet")
+//        textRecord.setValue("_b6957aeb96fbcf69fd3b80638e113f26", forKey: "UserID")
+//        privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
+//            NSLog("Saved to cloud kit")
+//        })
+//        var lolol = CKRecord(recordType: "DataStore", recordID: lol)
+//        var trolol = lolol.creatorUserRecordID
+//    }
     
     func retrieveText () {
         
