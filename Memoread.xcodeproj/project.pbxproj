@@ -18,6 +18,8 @@
 		FC36AE8D1AA5B8A2004F91F1 /* MemoreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE8C1AA5B8A2004F91F1 /* MemoreadTests.swift */; };
 		FC36AE981AA5BA72004F91F1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC36AE971AA5BA72004F91F1 /* CloudKit.framework */; };
 		FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */; };
+		FCB9D6191AA7632A00B99DEC /* LiddyBottomBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = FCB9D6181AA7632A00B99DEC /* LiddyBottomBanner.png */; };
+		FCB9D61B1AA7645200B99DEC /* FirstPetto.png in Resources */ = {isa = PBXBuildFile; fileRef = FCB9D61A1AA7645200B99DEC /* FirstPetto.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Memoread.entitlements; sourceTree = "<group>"; };
 		FC36AE971AA5BA72004F91F1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHandler.swift; sourceTree = "<group>"; };
+		FCB9D6181AA7632A00B99DEC /* LiddyBottomBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LiddyBottomBanner.png; sourceTree = "<group>"; };
+		FCB9D61A1AA7645200B99DEC /* FirstPetto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FirstPetto.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		FC36AE731AA5B8A2004F91F1 /* Memoread */ = {
 			isa = PBXGroup;
 			children = (
+				FCB9D6151AA7621400B99DEC /* Images */,
 				FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */,
 				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
 				FC36AE781AA5B8A2004F91F1 /* ViewController.swift */,
@@ -128,6 +133,15 @@
 				FC36AE8B1AA5B8A2004F91F1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCB9D6151AA7621400B99DEC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FCB9D61A1AA7645200B99DEC /* FirstPetto.png */,
+				FCB9D6181AA7632A00B99DEC /* LiddyBottomBanner.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC36AE7C1AA5B8A2004F91F1 /* Main.storyboard in Resources */,
+				FCB9D6191AA7632A00B99DEC /* LiddyBottomBanner.png in Resources */,
 				FC36AE811AA5B8A2004F91F1 /* LaunchScreen.xib in Resources */,
 				FC36AE7E1AA5B8A2004F91F1 /* Images.xcassets in Resources */,
+				FCB9D61B1AA7645200B99DEC /* FirstPetto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +388,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Memoread/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -386,9 +404,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Memoread/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -405,6 +425,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MemoreadTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Memoread.app/Memoread";
@@ -420,6 +441,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MemoreadTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Memoread.app/Memoread";

@@ -27,12 +27,7 @@ class ViewController: UIViewController {
 
     @IBAction func submitToCloud(sender: AnyObject) {
         cloudKitHandler.doesUserHavePet(complete)
-//        cloudKitHandler.getUserID(saveText)
     }
-    
-//    func saveText (userID: String) {
-//        cloudKitHandler.saveTextWhenUserIDHasBeenFetched(userID)
-//    }
     
     func complete(userHasPet: Bool) {
         let vc : AnyObject!

@@ -69,27 +69,32 @@ class CloudKitHandler {
         return
     }
     
-    func saveTextWhenUserIDHasBeenFetched(userID: String) {
+    func getUsername (userID: String, callback: (username: String) -> ()) {
+        let userIDToFind = NSPredicate(format: "UserID = %@", userID)
+        let userIDToQuery = CKQuery(recordType: "DataStore", predicate: userIDToFind)
+        privateDB.performQuery(userIDToQuery, inZoneWithID: nil, completionHandler:  {
+            returnedUserRecord, errorMessage in
+            var recordFound : NSArray = returnedUserRecord
+            if recordFound.count != 0 {
+                var recordRaw = recordFound[0] as! CKRecord
+                var usernameReturned: String = recordRaw.valueForKey("Username") as! String
+                return callback(username: usernameReturned)
+            }
+        })
+    }
+    
+    func saveWhenUserIDHasBeenFetched(userID: String, username: String?, callback: () -> ()) {
         let textRecord = CKRecord(recordType: "DataStore")
         textRecord.setValue(1, forKey: "HasPet")
         textRecord.setValue(userID, forKey: "UserID")
+        textRecord.setValue(username, forKey: "Username")
         privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
             NSLog("Saved to cloud kit")
+            return callback()
         })
+        return
     }
-//    
-//    func saveText() {
-//        let textRecord = CKRecord(recordType: "DataStore")
-//        var lol = textRecord.recordID
-//        textRecord.setValue(1, forKey: "HasPet")
-//        textRecord.setValue("_b6957aeb96fbcf69fd3b80638e113f26", forKey: "UserID")
-//        privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
-//            NSLog("Saved to cloud kit")
-//        })
-//        var lolol = CKRecord(recordType: "DataStore", recordID: lol)
-//        var trolol = lolol.creatorUserRecordID
-//    }
-    
+
     func retrieveText () {
         
         let textToFind = NSPredicate(format: "TextId = %d", 14)

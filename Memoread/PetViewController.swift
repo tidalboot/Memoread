@@ -10,9 +10,15 @@ import UIKit
 
 class PetViewController: UIViewController {
 
+
+    @IBOutlet var usernameLabel: UILabel!
+    
+    var cloudKitHandler = CloudKitHandler()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        cloudKitHandler.getUserID(getUsernameAndReturn)
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +27,21 @@ class PetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view .endEditing(true)
     }
-    */
+    
+    
+    func getUsernameAndReturn (userID: String) {
+        cloudKitHandler.getUsername(userID, callback: displayUsername)
+    }
+    
+    func displayUsername (username: String){
+        println("Welcome back \(username)")
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.usernameLabel.text = "Welcome back \(username)"
+        })
+    }
 
 }
