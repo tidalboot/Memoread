@@ -35,7 +35,7 @@ class CloudKitHandler {
                 println(userID)
                 let userIDToFind = NSPredicate(format: "UserID = %@", userID)
                 let userIDQuery = CKQuery(recordType: "DataStore", predicate: userIDToFind)
-                self.publicDB.performQuery(userIDQuery, inZoneWithID: nil,  completionHandler: {
+                self.privateDB.performQuery(userIDQuery, inZoneWithID: nil,  completionHandler: {
                     results, error in
                     if error != nil {
                         println("Data unreachable")
@@ -66,11 +66,14 @@ class CloudKitHandler {
     
     func saveText() {
         let textRecord = CKRecord(recordType: "DataStore")
+        var lol = textRecord.recordID
         textRecord.setValue(1, forKey: "HasPet")
         textRecord.setValue("_b6957aeb96fbcf69fd3b80638e113f26", forKey: "UserID")
-        publicDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
+        privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
             NSLog("Saved to cloud kit")
         })
+        var lolol = CKRecord(recordType: "DataStore", recordID: lol)
+        var trolol = lolol.creatorUserRecordID
     }
     
     func retrieveText () {
