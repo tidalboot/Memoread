@@ -8,6 +8,7 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
 class CloudKitHandler {
     let container : CKContainer
@@ -21,15 +22,26 @@ class CloudKitHandler {
         privateDB = container.privateCloudDatabase
     }
     
-    
-    func doesUserHavePet (callback: (userHasPet: Bool) -> ()) {
+    func doesUserHaveiCloudAccount () -> Bool {
         
+        var detectIsUserHasiCloudAccount = NSFileManager.defaultManager().ubiquityIdentityToken
+        
+        if detectIsUserHasiCloudAccount == nil {
+            return false
+        }
+        else{
+            return true
+        }
+    }
+
+    
+    func doesUserHavePet (callback: (userHasPet: Bool, errorOccured: Bool) -> ()) {
         var userHasPet = false
         
         container.fetchUserRecordIDWithCompletionHandler({
             recordID, error in
             if let err = error {
-                // Failed to get record ID
+                return callback(userHasPet: false, errorOccured: true)
             } else {
                 let userID = recordID.recordName
                 println(userID)
@@ -50,7 +62,7 @@ class CloudKitHandler {
                         else {
                             userHasPet = true
                         }
-                        return callback(userHasPet: userHasPet)
+                        return callback(userHasPet: userHasPet, errorOccured: false)
                     }
                     println("After fetching data userHasPet boolean is \(userHasPet)")
                 })
@@ -58,14 +70,15 @@ class CloudKitHandler {
         })
         return
     }
+
     
     func getUserID (callback: (userID: String) -> ()) {
         var userID : String!
-        container.fetchUserRecordIDWithCompletionHandler { (recordID, errorMessage
-            ) -> Void in
-            userID = recordID.recordName
-            return callback(userID: userID)
-        }
+        container.fetchUserRecordIDWithCompletionHandler({
+            recordID, error in
+            var userIDToReturn = recordID.recordName
+                return callback(userID: userIDToReturn)
+        })
         return
     }
     
@@ -83,14 +96,23 @@ class CloudKitHandler {
         })
     }
     
-    func saveWhenUserIDHasBeenFetched(userID: String, username: String?, callback: () -> ()) {
+    func saveWhenUserIDHasBeenFetched(userID: String, username: String?,
+        callback: (didErorOccur: Bool) -> ()) {
         let textRecord = CKRecord(recordType: "DataStore")
         textRecord.setValue(1, forKey: "HasPet")
         textRecord.setValue(userID, forKey: "UserID")
         textRecord.setValue(username, forKey: "Username")
-        privateDB.saveRecord(textRecord, completionHandler: { (record, error) -> Void in
-            NSLog("Saved to cloud kit")
-            return callback()
+        privateDB.saveRecord(textRecord, completionHandler:
+            { (record, error) -> Void in
+            
+                if error != nil {
+                    NSLog("Not saved to cloud kit")
+                    return callback(didErorOccur: true)
+                }
+                else {
+                    NSLog("Saved to cloud kit")
+                    return callback(didErorOccur: false)
+                }
         })
         return
     }
