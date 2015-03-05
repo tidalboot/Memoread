@@ -50,7 +50,7 @@ class CloudKitHandler {
                 self.privateDB.performQuery(userIDQuery, inZoneWithID: nil,  completionHandler: {
                     results, error in
                     if error != nil {
-                        println("Data unreachable")
+                        return callback(userHasPet: false, errorOccured: true)
                     }
                     else {
                         var record : NSArray = results
@@ -64,7 +64,6 @@ class CloudKitHandler {
                         }
                         return callback(userHasPet: userHasPet, errorOccured: false)
                     }
-                    println("After fetching data userHasPet boolean is \(userHasPet)")
                 })
             }
         })
@@ -74,10 +73,12 @@ class CloudKitHandler {
     
     func getUserID (callback: (userID: String) -> ()) {
         var userID : String!
+        
         container.fetchUserRecordIDWithCompletionHandler({
             recordID, error in
             var userIDToReturn = recordID.recordName
-                return callback(userID: userIDToReturn)
+    
+            return callback(userID: userIDToReturn)
         })
         return
     }
@@ -85,9 +86,11 @@ class CloudKitHandler {
     func getUsername (userID: String, callback: (username: String) -> ()) {
         let userIDToFind = NSPredicate(format: "UserID = %@", userID)
         let userIDToQuery = CKQuery(recordType: "DataStore", predicate: userIDToFind)
+        
         privateDB.performQuery(userIDToQuery, inZoneWithID: nil, completionHandler:  {
             returnedUserRecord, errorMessage in
             var recordFound : NSArray = returnedUserRecord
+            
             if recordFound.count != 0 {
                 var recordRaw = recordFound[0] as! CKRecord
                 var usernameReturned: String = recordRaw.valueForKey("Username") as! String
@@ -98,29 +101,29 @@ class CloudKitHandler {
     
     func saveWhenUserIDHasBeenFetched(userID: String, username: String?,
         callback: (didErorOccur: Bool) -> ()) {
-        let textRecord = CKRecord(recordType: "DataStore")
-        textRecord.setValue(1, forKey: "HasPet")
-        textRecord.setValue(userID, forKey: "UserID")
-        textRecord.setValue(username, forKey: "Username")
-        privateDB.saveRecord(textRecord, completionHandler:
-            { (record, error) -> Void in
-            
-                if error != nil {
-                    NSLog("Not saved to cloud kit")
-                    return callback(didErorOccur: true)
-                }
-                else {
-                    NSLog("Saved to cloud kit")
+            let textRecord = CKRecord(recordType: "DataStore")
+                
+            textRecord.setValue(1, forKey: "HasPet")
+            textRecord.setValue(userID, forKey: "UserID")
+            textRecord.setValue(username, forKey: "Username")
+            privateDB.saveRecord(textRecord, completionHandler:
+                { (record, error) -> Void in
+                    if error != nil {
+                        NSLog("Not saved to cloud kit")
+                        return callback(didErorOccur: true)
+                    }
+                    else {
+                        NSLog("Saved to cloud kit")
                     return callback(didErorOccur: false)
                 }
-        })
+            })
         return
     }
 
     func retrieveText () {
-        
         let textToFind = NSPredicate(format: "TextId = %d", 14)
         let textQuery = CKQuery(recordType: "DataStore", predicate: textToFind)
+        
         publicDB.performQuery(textQuery, inZoneWithID: nil) {
             results, error in
             if error != nil {
@@ -131,6 +134,6 @@ class CloudKitHandler {
                 var textResults = record.objectForKey("TextToRemember") as! String
                 NSLog(textResults)
             }
-            }
+        }
     }
 }

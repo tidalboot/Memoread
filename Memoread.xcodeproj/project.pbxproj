@@ -74,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC0AB8171AA8C09E00C3B53C /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
 		FC36AE681AA5B8A2004F91F1 = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +108,6 @@
 				FCB9D6151AA7621400B99DEC /* Images */,
 				FCB5F1DF1AA899F000E2E71C /* Features */,
 				FCB5F1E31AA89AA100E2E71C /* Infrastructure */,
-				FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */,
 				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
 				FC36AE7A1AA5B8A2004F91F1 /* Main.storyboard */,
 				FC36AE7D1AA5B8A2004F91F1 /* Images.xcassets */,
@@ -138,9 +145,10 @@
 		FCB5F1DF1AA899F000E2E71C /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				FCB5F1E21AA89A7300E2E71C /* PetSelectScreen */,
 				FCB5F1E11AA89A6300E2E71C /* PetScreen */,
+				FCB5F1E21AA89A7300E2E71C /* PetSelectScreen */,
 				FCB5F1E01AA89A0600E2E71C /* HomeScreen */,
+				FC0AB8171AA8C09E00C3B53C /* NavigationController */,
 			);
 			name = Features;
 			sourceTree = "<group>";
