@@ -27,30 +27,27 @@ class NoPetViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    //This hides the text box when the user clicks "Done"
     @IBAction func userNameTextFieldDoneButtonClicked(sender: AnyObject) {
         sender .resignFirstResponder()
     }
     
-    
-    @IBAction func petClicked(sender: AnyObject) {
+    @IBAction func submitButtonClicked(sender: AnyObject) {
         let userName = UserNameTextField.text
         
         nodeHandler.hideNodes([submitButton, errorMessageLabel, noUsernameEnterredLabel])
         
         if userName == ""{
-            
             nodeHandler.showNodes([noUsernameEnterredLabel, submitButton])
         }
         else {
-            
             nodeHandler.hideNodes([submitButton])
             nodeHandler.showNodes([loadingIndicator])
-            loadingIndicator.startAnimating()
             cloudKitHandler.getUserID(saveTextAndShowPetView)
         }
     }
-
+    
     func saveTextAndShowPetView (userID: String) {
             cloudKitHandler.saveWhenUserIDHasBeenFetched(userID, username: UserNameTextField.text, callback: showPetViewAfterDataHasBeenSaved)
     }
@@ -61,7 +58,6 @@ class NoPetViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.nodeHandler.hideNodes([self.loadingIndicator])
                 self.nodeHandler.showNodes([self.submitButton, self.errorMessageLabel])
-                self.loadingIndicator.stopAnimating()
             })
         }
         else {

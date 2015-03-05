@@ -14,14 +14,26 @@ class NodeHandler {
     func hideNodes (objectsToHide: [UIView]) {
         var objectArray = objectsToHide
         for object in objectArray {
-            object.hidden = true
+            if object is UIActivityIndicatorView {
+                (object as! UIActivityIndicatorView).stopAnimating()
+                object.hidden = true
+            }
+            else {
+                object.hidden = true
+            }
         }
     }
     
     func showNodes (objectsToShow: [UIView]) {
         var objectArray = objectsToShow
         for object in objectArray {
-            object.hidden = false
+            if object is UIActivityIndicatorView {
+                (object as! UIActivityIndicatorView).startAnimating()
+                object.hidden = false
+            }
+            else {
+                object.hidden = false
+            }
         }
     }
 }

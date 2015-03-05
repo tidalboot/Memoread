@@ -40,7 +40,6 @@ class ViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.nodeHandler.hideNodes([self.submitButton])
                 self.nodeHandler.showNodes([self.loadingIndicator])
-                self.loadingIndicator.startAnimating()
             })
             cloudKitHandler.doesUserHavePet(complete)
         }
@@ -48,6 +47,7 @@ class ViewController: UIViewController {
             nodeHandler.showNodes([submitButton, noiCloudAccountLabel])
         }
     }
+    
     
     func complete(userHasPet: Bool, errorOccured: Bool) {
         let vc : AnyObject!
@@ -63,19 +63,18 @@ class ViewController: UIViewController {
             else {
                 vc = self.storyboard!.instantiateViewControllerWithIdentifier("noPetView")
             }
-            
+    
             dispatch_async(dispatch_get_main_queue(), {
                 self.showViewController(vc as! UIViewController, sender: vc)
             })
         }
         else {
             dispatch_async(dispatch_get_main_queue(), {
-                
                 self.nodeHandler.showNodes([self.submitButton, self.networkErrorLabel])
                 self.nodeHandler.hideNodes([self.loadingIndicator])
-                self.loadingIndicator.stopAnimating()
             })
         }
     }
+    //-------
 }
 
