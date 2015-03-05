@@ -60,10 +60,10 @@ class NoPetViewController: UIViewController {
         
         if errorOccured  {
             dispatch_async(dispatch_get_main_queue(), {
-            self.submitButton.hidden = false
-            self.loadingIndicator.hidden = true
-            self.loadingIndicator.stopAnimating()
-            self.errorMessageLabel.hidden = false
+                self.submitButton.hidden = false
+                self.loadingIndicator.hidden = true
+                self.loadingIndicator.stopAnimating()
+                self.errorMessageLabel.hidden = false
             })
         }
         else {

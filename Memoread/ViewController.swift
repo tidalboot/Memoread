@@ -19,13 +19,19 @@ class ViewController: UIViewController {
 
     
     var cloudKitHandler = CloudKitHandler()
+    var nodeHandler = NodeHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.hidden = true
-        noiCloudAccountLabel.hidden = true
-        networkErrorLabel.hidden = true
+        
+        nodeHandler.hideNodes([], labelsToHide: [noiCloudAccountLabel, networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [loadingIndicator])
+//        
+//        loadingIndicator.hidden = true
+//        noiCloudAccountLabel.hidden = true
+//        networkErrorLabel.hidden = true
     }
+    
+
 
     
     override func didReceiveMemoryWarning() {
@@ -42,15 +48,19 @@ class ViewController: UIViewController {
 
         if doesUserHaveiCloudAccount {
             dispatch_async(dispatch_get_main_queue(), {
-                self.submitButton.hidden = true
-                self.loadingIndicator.hidden = false
+                self.nodeHandler.hideNodes([self.submitButton], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [])
+//                self.submitButton.hidden = true
+                self.nodeHandler.showNodes([], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [self.loadingIndicator])
+//                self.loadingIndicator.hidden = false
                 self.loadingIndicator.startAnimating()
             })
             cloudKitHandler.doesUserHavePet(complete)
         }
         else {
-            submitButton.hidden = false
-            noiCloudAccountLabel.hidden = false
+            
+            nodeHandler.showNodes([submitButton], labelsToHide: [noiCloudAccountLabel], textFieldsToHide: [], indicatorsToHide: [])
+//            submitButton.hidden = false
+//            noiCloudAccountLabel.hidden = false
         }
     }
     
@@ -61,7 +71,9 @@ class ViewController: UIViewController {
         println(userHasPet)
 
         if errorOccured == false {
-            networkErrorLabel.hidden = false
+            
+            nodeHandler.showNodes([], labelsToHide: [networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [])
+//            networkErrorLabel.hidden = false
 
             if userHasPet{
                 vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
@@ -76,9 +88,12 @@ class ViewController: UIViewController {
         }
         else {
             dispatch_async(dispatch_get_main_queue(), {
-                self.networkErrorLabel.hidden = false
-                self.submitButton.hidden = false
-                self.loadingIndicator.hidden = true
+                self.nodeHandler.showNodes([self.submitButton], labelsToHide: [self.networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [])
+                self.nodeHandler.hideNodes([], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [self.loadingIndicator])
+//                
+//                self.networkErrorLabel.hidden = false
+//                self.submitButton.hidden = false
+//                self.loadingIndicator.hidden = true
                 self.loadingIndicator.stopAnimating()
             })
         }

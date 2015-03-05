@@ -18,6 +18,8 @@
 		FC36AE8D1AA5B8A2004F91F1 /* MemoreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE8C1AA5B8A2004F91F1 /* MemoreadTests.swift */; };
 		FC36AE981AA5BA72004F91F1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC36AE971AA5BA72004F91F1 /* CloudKit.framework */; };
 		FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */; };
+		FCB5F1E51AA89BDC00E2E71C /* QueueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB5F1E41AA89BDC00E2E71C /* QueueHandler.swift */; };
+		FCB5F1E71AA8AA6200E2E71C /* NodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB5F1E61AA8AA6200E2E71C /* NodeHandler.swift */; };
 		FCB9D6191AA7632A00B99DEC /* LiddyBottomBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = FCB9D6181AA7632A00B99DEC /* LiddyBottomBanner.png */; };
 		FCB9D61B1AA7645200B99DEC /* FirstPetto.png in Resources */ = {isa = PBXBuildFile; fileRef = FCB9D61A1AA7645200B99DEC /* FirstPetto.png */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,8 @@
 		FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Memoread.entitlements; sourceTree = "<group>"; };
 		FC36AE971AA5BA72004F91F1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHandler.swift; sourceTree = "<group>"; };
+		FCB5F1E41AA89BDC00E2E71C /* QueueHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueHandler.swift; sourceTree = "<group>"; };
+		FCB5F1E61AA8AA6200E2E71C /* NodeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeHandler.swift; sourceTree = "<group>"; };
 		FCB9D6181AA7632A00B99DEC /* LiddyBottomBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LiddyBottomBanner.png; sourceTree = "<group>"; };
 		FCB9D61A1AA7645200B99DEC /* FirstPetto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FirstPetto.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,14 +98,12 @@
 		FC36AE731AA5B8A2004F91F1 /* Memoread */ = {
 			isa = PBXGroup;
 			children = (
-				FCB9D6151AA7621400B99DEC /* Images */,
 				FC36AE961AA5BA6C004F91F1 /* Memoread.entitlements */,
-				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
-				FC36AE781AA5B8A2004F91F1 /* ViewController.swift */,
-				FC0D0D911AA667240094F710 /* NoPetViewController.swift */,
-				FC0D0D8D1AA662DE0094F710 /* PetViewController.swift */,
+				FCB9D6151AA7621400B99DEC /* Images */,
+				FCB5F1DF1AA899F000E2E71C /* Features */,
+				FCB5F1E31AA89AA100E2E71C /* Infrastructure */,
 				FC0D0D8F1AA6632A0094F710 /* NavigationViewController.swift */,
-				FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */,
+				FC36AE761AA5B8A2004F91F1 /* AppDelegate.swift */,
 				FC36AE7A1AA5B8A2004F91F1 /* Main.storyboard */,
 				FC36AE7D1AA5B8A2004F91F1 /* Images.xcassets */,
 				FC36AE7F1AA5B8A2004F91F1 /* LaunchScreen.xib */,
@@ -133,6 +135,50 @@
 				FC36AE8B1AA5B8A2004F91F1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCB5F1DF1AA899F000E2E71C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FCB5F1E21AA89A7300E2E71C /* PetSelectScreen */,
+				FCB5F1E11AA89A6300E2E71C /* PetScreen */,
+				FCB5F1E01AA89A0600E2E71C /* HomeScreen */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
+		FCB5F1E01AA89A0600E2E71C /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC36AE781AA5B8A2004F91F1 /* ViewController.swift */,
+			);
+			name = HomeScreen;
+			sourceTree = "<group>";
+		};
+		FCB5F1E11AA89A6300E2E71C /* PetScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC0D0D8D1AA662DE0094F710 /* PetViewController.swift */,
+			);
+			name = PetScreen;
+			sourceTree = "<group>";
+		};
+		FCB5F1E21AA89A7300E2E71C /* PetSelectScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC0D0D911AA667240094F710 /* NoPetViewController.swift */,
+			);
+			name = PetSelectScreen;
+			sourceTree = "<group>";
+		};
+		FCB5F1E31AA89AA100E2E71C /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				FC36AE991AA5BBA8004F91F1 /* CloudKitHandler.swift */,
+				FCB5F1E41AA89BDC00E2E71C /* QueueHandler.swift */,
+				FCB5F1E61AA8AA6200E2E71C /* NodeHandler.swift */,
+			);
+			name = Infrastructure;
 			sourceTree = "<group>";
 		};
 		FCB9D6151AA7621400B99DEC /* Images */ = {
@@ -252,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB5F1E71AA8AA6200E2E71C /* NodeHandler.swift in Sources */,
+				FCB5F1E51AA89BDC00E2E71C /* QueueHandler.swift in Sources */,
 				FC36AE9A1AA5BBA8004F91F1 /* CloudKitHandler.swift in Sources */,
 				FC0D0D921AA667240094F710 /* NoPetViewController.swift in Sources */,
 				FC36AE791AA5B8A2004F91F1 /* ViewController.swift in Sources */,
