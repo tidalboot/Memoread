@@ -17,12 +17,11 @@ class NoPetViewController: UIViewController {
     @IBOutlet var errorMessageLabel: UILabel!
     
     var cloudKitHandler = CloudKitHandler()
+    var nodeHandler = NodeHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.hidden = true
-        errorMessageLabel.hidden = true
-        noUsernameEnterredLabel.hidden = true
+        nodeHandler.hideNodes([loadingIndicator, errorMessageLabel, noUsernameEnterredLabel])
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,17 +35,17 @@ class NoPetViewController: UIViewController {
     
     @IBAction func petClicked(sender: AnyObject) {
         let userName = UserNameTextField.text
-        submitButton.hidden = true
-        errorMessageLabel.hidden = true
-        noUsernameEnterredLabel.hidden = true
+        
+        nodeHandler.hideNodes([submitButton, errorMessageLabel, noUsernameEnterredLabel])
         
         if userName == ""{
-                self.noUsernameEnterredLabel.hidden = false
-                submitButton.hidden = false
+            
+            nodeHandler.showNodes([noUsernameEnterredLabel, submitButton])
         }
         else {
-            submitButton.hidden = true
-            loadingIndicator.hidden = false
+            
+            nodeHandler.hideNodes([submitButton])
+            nodeHandler.showNodes([loadingIndicator])
             loadingIndicator.startAnimating()
             cloudKitHandler.getUserID(saveTextAndShowPetView)
         }
@@ -60,10 +59,9 @@ class NoPetViewController: UIViewController {
         
         if errorOccured  {
             dispatch_async(dispatch_get_main_queue(), {
-                self.submitButton.hidden = false
-                self.loadingIndicator.hidden = true
+                self.nodeHandler.hideNodes([self.loadingIndicator])
+                self.nodeHandler.showNodes([self.submitButton, self.errorMessageLabel])
                 self.loadingIndicator.stopAnimating()
-                self.errorMessageLabel.hidden = false
             })
         }
         else {

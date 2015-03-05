@@ -23,48 +23,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nodeHandler.hideNodes([], labelsToHide: [noiCloudAccountLabel, networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [loadingIndicator])
-//        
-//        loadingIndicator.hidden = true
-//        noiCloudAccountLabel.hidden = true
-//        networkErrorLabel.hidden = true
+        nodeHandler.hideNodes([noiCloudAccountLabel, networkErrorLabel, loadingIndicator])
     }
-    
-
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func submitToCloud(sender: AnyObject) {
         
-        noiCloudAccountLabel.hidden = true
-        networkErrorLabel.hidden = true
+        nodeHandler.hideNodes([noiCloudAccountLabel, networkErrorLabel])
         
         var doesUserHaveiCloudAccount = cloudKitHandler.doesUserHaveiCloudAccount()
 
         if doesUserHaveiCloudAccount {
             dispatch_async(dispatch_get_main_queue(), {
-                self.nodeHandler.hideNodes([self.submitButton], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [])
-//                self.submitButton.hidden = true
-                self.nodeHandler.showNodes([], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [self.loadingIndicator])
-//                self.loadingIndicator.hidden = false
+                self.nodeHandler.hideNodes([self.submitButton])
+                self.nodeHandler.showNodes([self.loadingIndicator])
                 self.loadingIndicator.startAnimating()
             })
             cloudKitHandler.doesUserHavePet(complete)
         }
         else {
-            
-            nodeHandler.showNodes([submitButton], labelsToHide: [noiCloudAccountLabel], textFieldsToHide: [], indicatorsToHide: [])
-//            submitButton.hidden = false
-//            noiCloudAccountLabel.hidden = false
+            nodeHandler.showNodes([submitButton, noiCloudAccountLabel])
         }
     }
-    
-    
     
     func complete(userHasPet: Bool, errorOccured: Bool) {
         let vc : AnyObject!
@@ -72,8 +55,7 @@ class ViewController: UIViewController {
 
         if errorOccured == false {
             
-            nodeHandler.showNodes([], labelsToHide: [networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [])
-//            networkErrorLabel.hidden = false
+            nodeHandler.showNodes([networkErrorLabel])
 
             if userHasPet{
                 vc = self.storyboard!.instantiateViewControllerWithIdentifier("petView")
@@ -88,22 +70,12 @@ class ViewController: UIViewController {
         }
         else {
             dispatch_async(dispatch_get_main_queue(), {
-                self.nodeHandler.showNodes([self.submitButton], labelsToHide: [self.networkErrorLabel], textFieldsToHide: [], indicatorsToHide: [])
-                self.nodeHandler.hideNodes([], labelsToHide: [], textFieldsToHide: [], indicatorsToHide: [self.loadingIndicator])
-//                
-//                self.networkErrorLabel.hidden = false
-//                self.submitButton.hidden = false
-//                self.loadingIndicator.hidden = true
+                
+                self.nodeHandler.showNodes([self.submitButton, self.networkErrorLabel])
+                self.nodeHandler.hideNodes([self.loadingIndicator])
                 self.loadingIndicator.stopAnimating()
             })
         }
-        
-        
-
-    }
-
-
-    @IBAction func getLatestText(sender: AnyObject) {
     }
 }
 
