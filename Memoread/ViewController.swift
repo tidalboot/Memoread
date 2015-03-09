@@ -17,17 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet var noiCloudAccountLabel: UILabel!
     @IBOutlet var networkErrorLabel: UILabel!
 
-    
     var cloudKitHandler = CloudKitHandler()
     var nodeHandler = NodeHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nodeHandler.hideNodes([noiCloudAccountLabel, networkErrorLabel, loadingIndicator])
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     @IBAction func submitToCloud(sender: AnyObject) {
@@ -37,10 +32,8 @@ class ViewController: UIViewController {
         var doesUserHaveiCloudAccount = cloudKitHandler.doesUserHaveiCloudAccount()
 
         if doesUserHaveiCloudAccount {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.nodeHandler.hideNodes([self.submitButton])
-                self.nodeHandler.showNodes([self.loadingIndicator])
-            })
+                nodeHandler.hideNodes([self.submitButton])
+                nodeHandler.showNodes([self.loadingIndicator])
             cloudKitHandler.doesUserHavePet(complete)
         }
         else {
@@ -64,15 +57,11 @@ class ViewController: UIViewController {
                 vc = self.storyboard!.instantiateViewControllerWithIdentifier("noPetView")
             }
     
-            dispatch_async(dispatch_get_main_queue(), {
                 self.showViewController(vc as! UIViewController, sender: vc)
-            })
         }
         else {
-            dispatch_async(dispatch_get_main_queue(), {
                 self.nodeHandler.showNodes([self.submitButton, self.networkErrorLabel])
                 self.nodeHandler.hideNodes([self.loadingIndicator])
-            })
         }
     }
     //-------
